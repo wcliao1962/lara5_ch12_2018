@@ -19,12 +19,13 @@ Route::get('/', function(){
 Route::get('hello', function(){
 	if(Request::has('lang')){
 		App::setLocale(Request::get('lang'));
+		//dd(Request::get('lang'));
 	}
 	return view('hello');
 });
 
 
-Route::controller('mail','MailController');
+Route::get('mail','MailController@getSend');
 
 Route::controller('carbon','CarbonController');
 

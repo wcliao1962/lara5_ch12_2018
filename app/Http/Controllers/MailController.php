@@ -12,11 +12,19 @@ class MailController extends Controller
 
     public function getSend(){
 
-    	Mail::send('email.test',['name'=>''],function($message){
+        // $from=??
+        // $to=??
+        $content='xxxxxxxxxxxxx';
+        $data = ['name' => '張三', 'content'=> $content, ];
+
+    	Mail::send('email.test',$data,function($message){
     		$message->subject('Laravel 5 Mail');
-		    $message->to('lwc32005@gmail.com');
+		    $message->to('lwc32005@gmail.com', '張三');
+            $message->from('netadmin@ncut.edu.tw', 'netadmin');
 		});
+
     	return "Email 已寄出";
+
     }
 
 }
