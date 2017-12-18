@@ -62,7 +62,7 @@
                             <p>其他登入方式</p>
                             <a href="{{ route('social.redirect', ['provider' => 'facebook']) }}" class="btn btn-lg btn-primary btn-block">Facebook</a>
                             <a href="{{ route('social.redirect', ['provider' => 'google']) }}" class="btn btn-lg btn-danger btn-block">Google</a>
-                            <a href="{{ route('social.redirect', ['provider' => 'github']) }}" class="btn btn-lg btn-danger btn-block">GitHUb</a>
+                            <a href="{{ route('social.redirect', ['provider' => 'github']) }}" class="btn btn-lg btn-primary btn-block">GitHUb</a>
                         </div>
                     </form>
                 </div>
