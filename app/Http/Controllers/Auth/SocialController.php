@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\User as UserEloquent;
-use App\SocialUser as SocialUserEloquent;
+use App\User;
+use App\SocialUser;
 
 use App;
 use Auth;
@@ -34,19 +34,19 @@ class SocialController extends Controller
         $socialite_user = Socialite::with($provider)->user();
         $login_user = null;
 
-        $user=UserEloquent::where('email',$socialite_user->email)->where('provider',$provider)->first();
+        $user=User::where('email',$socialite_user->email)->where('provider',$provider)->first();
         if(!empty($user)){
             //使用之前的帳號登入
             $login_user = $user;
         }else{
             //建立帳號
-            $new_user = new UserEloquent([
+            $new_user = new User([
                 'email' => $socialite_user->email,
                 'name' => $socialite_user->name
             ]);
             $new_user->provider=$provider;
             $new_user->save();
-            $new_socialUser = new SocialUserEloquent([
+            $new_socialUser = new SocialUser([
                 'user_id' => $new_user->id,
                 'provider_user_id' => $socialite_user->id,
                 'provider' => $provider
